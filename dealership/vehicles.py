@@ -1,6 +1,7 @@
-multiplier = {'sale': {'car': 1.2 , 'motorcycle' : 1.1, 'truck': 1.6}, 'purchase': {'car': 0.004 , 'motorcycle': 0.009, 'truck': 0.02}}
+
 
 class Vehicle(object):
+ 
     def __init__(self, maker, model, year, base_price, miles):
         self.maker = maker
         self.model = model 
@@ -9,28 +10,30 @@ class Vehicle(object):
         self.miles = miles 
         
     def sale_price(self):
-      S = multiplier['sale'][self.name]
+      S = self.SALE_MULTIPLIER
       self.sales_price = self.base_price * S
       return self.sales_price
     
     def purchase_price(self):
-      P = multiplier['purchase'][self.name]
+      P = self.PURCHASE_MULTIPLIER
       self.purchase_price = self.sale_price() - (P * self.miles)
       return self.purchase_price
       
 class Car(Vehicle):
-  def __init__(self, maker, model, year, base_price, miles):
-    Vehicle.__init__(self, maker, model, year, base_price, miles)
-    self.name = 'car'
-
+  SALE_MULTIPLIER = 1.2 
+  PURCHASE_MULTIPLIER = 0.004
+  INTEREST_RATE = 1.07
+  LEASE_MULTIPLIER = 1.2
 
 class Motorcycle(Vehicle):
-  def __init__(self, maker, model, year, base_price, miles):
-    Vehicle.__init__(self, maker, model, year, base_price, miles)
-    self.name = 'motorcycle'
+  SALE_MULTIPLIER = 1.1
+  PURCHASE_MULTIPLIER = 0.009
+  INTEREST_RATE = 1.03
+  LEASE_MULTIPLIER = 1
 
 
 class Truck(Vehicle):
-  def __init__(self, maker, model, year, base_price, miles):
-    Vehicle.__init__(self, maker, model, year, base_price, miles)
-    self.name = 'truck'
+  SALE_MULTIPLIER = 1.6
+  PURCHASE_MULTIPLIER = 0.02
+  INTEREST_RATE = 1.11
+  LEASE_MULTIPLIER = 1.7

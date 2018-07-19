@@ -5,19 +5,14 @@ class Person(object):
         self.email = email 
        
     def is_employee(self):
-      if self.customer == False: 
-        return True
-      else: 
-        return False 
+      return True
 
 
 class Customer(Person):
-    def __init__(self, first_name, last_name, email):
-      Person.__init__(self, first_name, last_name, email)
-      self.customer = True 
+    def is_employee(self):
+      return False
+    
 
 
 class Employee(Person):
-    def __init__(self, first_name, last_name, email):
-      Person.__init__(self, first_name, last_name, email)
-      self.customer = False  
+  pass 
